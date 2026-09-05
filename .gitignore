@@ -11,3 +11,6 @@ obj/
 
 # Local environment/config
 appsettings.Development.json
+
+# Environment
+.env
