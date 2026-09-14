@@ -41,6 +41,16 @@ app.MapGet("/hello", () =>
     };
 });
 
+app.MapGet("/hello2", async (RedFoxDbContext db) =>
+{
+	var messages = await db.Messages
+        .OrderByDescending(m => m.Timestamp)
+        .Take(2)
+        .ToListAsync();
+
+    return Results.Ok(messages);
+});
+
 app.MapPost("/upload", async (HttpRequest request, MessengerImporter importer) =>
 {
     var form = await request.ReadFormAsync();
